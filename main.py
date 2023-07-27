@@ -47,11 +47,10 @@ def rosavtodor():
         bot.send_message(channel_id, text=f"{link}\n{title}\n{description}")
 
 
-def rosdornii():
-    path = "rosdornii.txt"
+def rosdornii_events():
+    path = "rosdornii_events.txt"
     dataset = file_set(path)
     URL = "https://rosdornii.ru/press-center/event/"
-    # URL2 = "https://rosdornii.ru/press-center/news/" - создать список и ебнуть фор
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     parsing = soup.findAll("div", class_="NewsCalNews")[-1]
@@ -70,9 +69,32 @@ def rosdornii():
         bot.send_message(channel_id, text=f"{link}\n{title}\n{date}")
 
 
+def rosdornii_news():
+    path = "rosdornii_news.txt"
+    dataset = file_set(path)
+    print(dataset)
+    URL = "https://rosdornii.ru/press-center/news/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.findAll("div", class_="iblock-list-item-text w-md-60 pl-md-4")[0]
+    parsed_link = re.findall(r'href="(\/.*?\/.*)"', str(parsing))[0]
+    print(parsed_link)
+    if parsed_link not in dataset:
+        dataset.add(parsed_link)
+        file_add(path, parsed_link)
+        title = parsing.find('a', hidefocus="true")
+        print(title)
+        if title:
+            title = title.get_text(strip=True)
+            print(title)
+        parsed_link = "https://rosdornii.ru" + parsed_link
+        bot.send_message(channel_id, text=f"{parsed_link}\n{title}")
+
+
 while True:
     rosavtodor()
-    rosdornii()
+    rosdornii_events()
+    rosdornii_news()
     time.sleep(1800)
 
 bot.polling()
