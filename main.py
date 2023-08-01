@@ -33,16 +33,14 @@ def rosavtodor():
     URL = "https://rosavtodor.gov.ru"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    parsed = str(soup.find_all("a", class_='boxLink')[0])
-    if parsed not in dataset:
-        dataset.add(parsed)
-        file_add(path, parsed)
-        post = soup.find("div", class_="newsMain-item size1")
-        title = post.find("p", class_="subTitle").text.strip()
-        description = post.find("div", class_="text").text.strip()
-        url = soup.find_all('a', class_='boxLink')[0]
-        link = URL + re.findall(r'href="(\/.*?)"', str(url))[0]
-        bot.send_message(channel_id, text=f"{link}\n{title}\n{description}")
+    parsed = soup.find_all("div", class_='newsList')[0]
+    link = parsed.findAll(class_="boxLink")
+    link = URL + re.findall(r'href="(\/.*?)"', str(link))[0]
+    if link not in dataset:
+        dataset.add(link)
+        file_add(path, link)
+        title = parsed.find("p", class_="newsList__text").text.strip()
+        bot.send_message(channel_id, text=f"{title}\n{link}")
 
 
 def rosdornii_events():
@@ -144,6 +142,34 @@ def proekt_ros_news():
         bot.send_message(channel_id, text=f"{link}\n{title}")
 
 
+def nostroy_news():
+    path = "nostroy_news.txt"
+    dataset = file_set(path)
+    URL = "https://nostroy.ru/company/news/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('div', class_="m-info-item__title title font_mlg")
+    title = parsing.text.strip()
+    link = URL + re.findall(r'href="/company/news/([^"]+)"', str(parsing))[0]
+    if link not in dataset:
+        file_add(path, link)
+        bot.send_message(channel_id, text=f"{link}\n{title}")
+
+
+def nostroy_events():
+    path = "nostroy_events.txt"
+    dataset = file_set(path)
+    URL = "https://nostroy.ru/company/anonsy-meropriyatiy/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('div', class_='preview-text')
+    title = parsing.text.strip()
+    link = URL + re.findall(r'href="/company/anonsy-meropriyatiy/([^"]+)"', str(parsing))[0]
+    if link not in dataset:
+        file_add(path, link)
+        bot.send_message(channel_id, text=f"{link}\n{title}")
+
+
 while True:
     rosavtodor()
     rosdornii_events()
@@ -151,7 +177,9 @@ while True:
     rosdornii_digest()
     nopriz_news()
     proekt_ros_news()
-    print("Сплю... Проснусь через полчаса")
+    nostroy_news()
+    nostroy_events()
+    print("Сплю... Проснусь через 15 минут")
     time.sleep(15 * 60)
 
 
