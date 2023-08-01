@@ -51,20 +51,18 @@ def rosdornii_events():
     URL = "https://rosdornii.ru/press-center/event/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.findAll("div", class_="NewsCalNews")[-1]
-    parsed = re.findall(r'href="(\/.*?\/.*)"', str(parsing))
-    if parsed[0] not in dataset:
-        dataset.add(parsed[0])
-        file_add(path, parsed[0])
-        title = parsing.find("a", class_="t--1 mb-2 sf-link sf-link-theme c-text-primary").text.strip()
-        url = parsing.find("a", class_="t--1 mb-2 sf-link sf-link-theme c-text-primary")
-        link = "https://rosdornii.ru" + url.get("href")
+    parsing = soup.findAll("h3",
+                           class_="t-1 my-2 t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition")[
+        0].find('a')
+    parsed = re.findall(r'href="\/press-center\/event\/(.*?\/.*)"', str(parsing))[0]
+    if parsed not in dataset:
+        dataset.add(parsed)
+        file_add(path, parsed)
+        link = URL + parsed
+        title = parsing.text.strip()
         # достаю дату
-        date = soup.find_all("a", class_="events btn-primary")[-1]
-        dates = re.findall(r'date=(\d\d\.\d\d\.\d\d\d\d)', str(date))
-        if dates:
-            date = dates[0]
-        bot.send_message(channel_id, text=f"{link}\n{title}\n{date}")
+        date = soup.find_all("p", class_="t--1 c-text-secondary mb-2")[0].text.strip()
+        bot.send_message(channel_id, text=f"{date}\n{title}\n{link}")
 
 
 def rosdornii_news():
@@ -111,8 +109,8 @@ def nopriz_news():
     link = URL + re.findall(r'href="\/news\/(.*)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        print(link, title)
         bot.send_message(channel_id, text=f"{link}\n{title}")
+
 
 '''
 def nopriz_events():
@@ -128,7 +126,8 @@ def nopriz_events():
     if link not in dataset:
         file_add(path, link)
         print(link, title)
-        bot.send_message(channel_id, text=f"{link}\n{title}")'''
+        bot.send_message(channel_id, text=f"{link}\n{title}")
+'''
 
 
 def proekt_ros_news():
@@ -153,7 +152,7 @@ while True:
     nopriz_news()
     proekt_ros_news()
     print("Сплю... Проснусь через полчаса")
-    time.sleep(15*60)
+    time.sleep(15 * 60)
 
 
 def poll():
