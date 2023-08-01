@@ -110,22 +110,19 @@ def nopriz_news():
         bot.send_message(channel_id, text=f"{link}\n{title}")
 
 
-'''
 def nopriz_events():
     path = "nopriz_events.txt.txt"
     dataset = file_set(path)
     URL = "https://www.nopriz.ru/events/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('div', class_='title font_md').findAll('a')
+    parsing = soup.findAll('div', class_='title font_md')[-1]
     print(parsing)
-    #title = parsing.text.strip()
-    link = URL + re.findall(r'href="\/news\/(.*)"', str(parsing))[0]
+    title = parsing.text.strip()
+    link = URL + re.findall(r'href="\/events\/(.*)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        print(link, title)
-        bot.send_message(channel_id, text=f"{link}\n{title}")
-'''
+        bot.send_message(channel_id, text=f"{title}\n{link}")
 
 
 def proekt_ros_news():
@@ -176,6 +173,7 @@ while True:
     rosdornii_news()
     rosdornii_digest()
     nopriz_news()
+    nopriz_events()
     proekt_ros_news()
     nostroy_news()
     nostroy_events()
