@@ -117,7 +117,6 @@ def nopriz_events():
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     parsing = soup.findAll('div', class_='title font_md')[-1]
-    print(parsing)
     title = parsing.text.strip()
     link = URL + re.findall(r'href="\/events\/(.*)"', str(parsing))[0]
     if link not in dataset:
@@ -167,6 +166,21 @@ def nostroy_events():
         bot.send_message(channel_id, text=f"{link}\n{title}")
 
 
+def avtodor_news():
+    path = "avtodor_news.txt"
+    dataset = file_set(path)
+    URL = "https://russianhighways.ru/press/news/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('a', class_="press-item-large")
+    id = re.findall(r'href="/press/news/([^"]+)"', str(parsing))[0]
+    if id not in dataset:
+        file_add(path, id)
+        link = URL + id
+        title = parsing.find('span', class_="press-item-large__h").text.strip()
+        bot.send_message(channel_id, text=f"{title}\n{link}")
+
+
 while True:
     rosavtodor()
     rosdornii_events()
@@ -177,6 +191,7 @@ while True:
     proekt_ros_news()
     nostroy_news()
     nostroy_events()
+    avtodor_news()
     print("Сплю... Проснусь через 15 минут")
     time.sleep(15 * 60)
 
