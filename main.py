@@ -100,8 +100,8 @@ def rosdornii_digest():
         bot.send_message(channel_id, text=f"{parsed_link}")
 
 
-def nopriz_events():
-    path = "nopriz_events.txt"
+def nopriz_news():
+    path = "nopriz_news.txt"
     dataset = file_set(path)
     URL = "https://www.nopriz.ru/news/"
     page = requests.get(URL)
@@ -114,14 +114,56 @@ def nopriz_events():
         print(link, title)
         bot.send_message(channel_id, text=f"{link}\n{title}")
 
+'''
+def nopriz_events():
+    path = "nopriz_events.txt.txt"
+    dataset = file_set(path)
+    URL = "https://www.nopriz.ru/events/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('div', class_='title font_md').findAll('a')
+    print(parsing)
+    #title = parsing.text.strip()
+    link = URL + re.findall(r'href="\/news\/(.*)"', str(parsing))[0]
+    if link not in dataset:
+        file_add(path, link)
+        print(link, title)
+        bot.send_message(channel_id, text=f"{link}\n{title}")'''
+
+
+def proekt_ros_news():
+    path = "proekt_ros_news.txt"
+    dataset = file_set(path)
+    URL = "https://bkdrf.ru/News/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('a', class_='nb_link')
+    title = parsing.text.strip()
+    link = URL + re.findall(r'href="/News/([^"]+)"', str(parsing))[0]
+    if link not in dataset:
+        file_add(path, link)
+        bot.send_message(channel_id, text=f"{link}\n{title}")
+
 
 while True:
     rosavtodor()
     rosdornii_events()
     rosdornii_news()
     rosdornii_digest()
-    nopriz_events()
+    nopriz_news()
+    proekt_ros_news()
     print("Сплю... Проснусь через полчаса")
-    time.sleep(1800)
+    time.sleep(15*60)
 
-bot.polling()
+
+def poll():
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(e)
+        time.sleep(3)
+        poll()
+
+
+if __name__ == '__main__':
+    poll()
