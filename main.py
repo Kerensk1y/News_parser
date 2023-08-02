@@ -180,6 +180,39 @@ def avtodor_news():
         title = parsing.find('span', class_="press-item-large__h").text.strip()
         bot.send_message(channel_id, text=f"{title}\n{link}")
 
+'''
+Отсутствует ссылка на новость
+def avtodor_smi():
+    path = "avtodor_smi.txt"
+    dataset = file_set(path)
+    URL = "https://russianhighways.ru/press/news/?news-category=smi"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('a', class_="press-item-large")
+    print(parsing)
+    id = re.findall(r'href="/press/news/([^"]+)"', str(parsing))[0]
+    if id not in dataset:
+        file_add(path, id)
+        link = URL + id
+        title = parsing.find('span', class_="press-item-large__h").text.strip()
+        print(link, title)
+        #bot.send_message(channel_id, text=f"{title}\n{link}")'''
+
+
+def rosasfalt():
+    path = "rosasfalt.txt"
+    dataset = file_set(path)
+    URL = "https://rosasfalt.org/about/news/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('p', class_="title")
+    title = parsing.text.strip()
+    id = re.findall(r'href="/about/news/([^"]+)"', str(parsing))[0]
+    if id not in dataset:
+        file_add(path, id)
+        link = URL + id
+        bot.send_message(channel_id, text=f"{title}\n{link}")
+
 
 while True:
     rosavtodor()
@@ -192,6 +225,7 @@ while True:
     nostroy_news()
     nostroy_events()
     avtodor_news()
+    rosasfalt()
     print("Сплю... Проснусь через 15 минут")
     time.sleep(15 * 60)
 
