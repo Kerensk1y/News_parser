@@ -111,7 +111,7 @@ def nopriz_news():
 
 
 def nopriz_events():
-    path = "nopriz_events.txt.txt"
+    path = "nopriz_events.txt"
     dataset = file_set(path)
     URL = "https://www.nopriz.ru/events/"
     page = requests.get(URL)
