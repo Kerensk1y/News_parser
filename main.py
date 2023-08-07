@@ -40,7 +40,7 @@ def rosavtodor():
         dataset.add(link)
         file_add(path, link)
         title = parsed.find("p", class_="newsList__text").text.strip()
-        bot.send_message(channel_id, text=f"{title}\n{link}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def rosdornii_events():
@@ -60,7 +60,7 @@ def rosdornii_events():
         title = parsing.text.strip()
         # достаю дату
         date = soup.find_all("p", class_="t--1 c-text-secondary mb-2")[0].text.strip()
-        bot.send_message(channel_id, text=f"{date}\n{title}\n{link}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def rosdornii_news():
@@ -77,8 +77,8 @@ def rosdornii_news():
         title = parsing.find('a', hidefocus="true")
         if title:
             title = title.get_text(strip=True)
-        parsed_link = "https://rosdornii.ru" + parsed_link
-        bot.send_message(channel_id, text=f"{parsed_link}\n{title}")
+        link = "https://rosdornii.ru" + parsed_link
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def rosdornii_digest():
@@ -107,7 +107,7 @@ def nopriz_news():
     link = URL + re.findall(r'href="\/news\/(.*)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        bot.send_message(channel_id, text=f"{link}\n{title}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def nopriz_events():
@@ -121,7 +121,7 @@ def nopriz_events():
     link = URL + re.findall(r'href="\/events\/(.*)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        bot.send_message(channel_id, text=f"{title}\n{link}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def proekt_ros_news():
@@ -135,7 +135,7 @@ def proekt_ros_news():
     link = URL + re.findall(r'href="/News/([^"]+)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        bot.send_message(channel_id, text=f"{link}\n{title}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def nostroy_news():
@@ -149,7 +149,7 @@ def nostroy_news():
     link = URL + re.findall(r'href="/company/news/([^"]+)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        bot.send_message(channel_id, text=f"{link}\n{title}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def nostroy_events():
@@ -163,7 +163,7 @@ def nostroy_events():
     link = URL + re.findall(r'href="/company/anonsy-meropriyatiy/([^"]+)"', str(parsing))[0]
     if link not in dataset:
         file_add(path, link)
-        bot.send_message(channel_id, text=f"{link}\n{title}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
 def avtodor_news():
@@ -178,7 +178,8 @@ def avtodor_news():
         file_add(path, id)
         link = URL + id
         title = parsing.find('span', class_="press-item-large__h").text.strip()
-        bot.send_message(channel_id, text=f"{title}\n{link}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+
 
 '''
 Отсутствует ссылка на новость
@@ -211,33 +212,54 @@ def rosasfalt():
     if id not in dataset:
         file_add(path, id)
         link = URL + id
-        bot.send_message(channel_id, text=f"{title}\n{link}")
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
-while True:
-    rosavtodor()
-    rosdornii_events()
-    rosdornii_news()
-    rosdornii_digest()
-    nopriz_news()
-    nopriz_events()
-    proekt_ros_news()
-    nostroy_news()
-    nostroy_events()
-    avtodor_news()
-    rosasfalt()
-    print("Сплю... Проснусь через 15 минут")
-    time.sleep(15 * 60)
+def minstroy():
+    path = "minstroy.txt"
+    dataset = file_set(path)
+    URL = "https://minstroyrf.gov.ru/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('div', class_="new-text")
+    title = parsing.text.strip()
+    id = re.findall(r'href="([^"]+)"', str(parsing))[0]
+    if id not in dataset:
+        file_add(path, id)
+        link = URL + id
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+
+
+def main_loop():
+    while True:
+        try:
+            rosavtodor()
+            rosdornii_events()
+            rosdornii_news()
+            rosdornii_digest()
+            nopriz_news()
+            nopriz_events()
+            proekt_ros_news()
+            nostroy_news()
+            nostroy_events()
+            avtodor_news()
+            rosasfalt()
+            minstroy()
+            print("Сплю... Проснусь через 15 минут")
+            time.sleep(15 * 60)
+        except Exception as e:
+            print(f"Произошла ошибка: {e}")
+            time.sleep(60)  # Подождать 1 минуту перед повторной попыткой
 
 
 def poll():
-    try:
-        bot.polling(none_stop=True)
-    except Exception as e:
-        print(e)
-        time.sleep(3)
-        poll()
+    while True:
+        try:
+            bot.polling(none_stop=True)
+        except Exception as e:
+            print(f"Ошибка при запуске polling: {e}")
+            time.sleep(5)  # Подождать 5 секунд перед повторной попыткой
 
 
 if __name__ == '__main__':
-    poll()
+    main_loop()
