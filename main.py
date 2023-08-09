@@ -181,25 +181,6 @@ def avtodor_news():
         bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
-'''
-Отсутствует ссылка на новость
-def avtodor_smi():
-    path = "avtodor_smi.txt"
-    dataset = file_set(path)
-    URL = "https://russianhighways.ru/press/news/?news-category=smi"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('a', class_="press-item-large")
-    print(parsing)
-    id = re.findall(r'href="/press/news/([^"]+)"', str(parsing))[0]
-    if id not in dataset:
-        file_add(path, id)
-        link = URL + id
-        title = parsing.find('span', class_="press-item-large__h").text.strip()
-        print(link, title)
-        #bot.send_message(channel_id, text=f"{title}\n{link}")'''
-
-
 def rosasfalt():
     path = "rosasfalt.txt"
     dataset = file_set(path)
@@ -243,6 +224,20 @@ def tk418():
         bot.send_message(channel_id, text=f"{title}\n{URL}")
 
 
+def faufcc():
+    path = "faufcc.txt"
+    dataset = file_set(path)
+    URL = "https://www.faufcc.ru/archive/key-news/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = str(soup.find('div', class_="news-item-content-wrapper"))
+    link = "https://www.faufcc.ru" + re.findall(r'href="([^"]+)"', parsing)[0]
+    title = re.findall(r'href="[^"]+">(.*)<\/a>', parsing)[0]
+    if title not in dataset:
+        file_add(path, title)
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+
+
 def main_loop():
     while True:
         try:
@@ -259,6 +254,7 @@ def main_loop():
             rosasfalt()
             minstroy()
             tk418()
+            faufcc()
             print("Сплю... Проснусь через 15 минут")
             time.sleep(15 * 60)
         except Exception as e:
