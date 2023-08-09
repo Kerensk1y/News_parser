@@ -230,6 +230,19 @@ def minstroy():
         bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
+def tk418():
+    path = "tk418.txt"
+    dataset = file_set(path)
+    URL = "https://tk418.ru/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = soup.find('p', class_="news-item")
+    title = parsing.text.strip()
+    if title not in dataset:
+        file_add(path, title)
+        bot.send_message(channel_id, text=f"{title}\n{URL}")
+
+
 def main_loop():
     while True:
         try:
@@ -245,6 +258,7 @@ def main_loop():
             avtodor_news()
             rosasfalt()
             minstroy()
+            tk418()
             print("Сплю... Проснусь через 15 минут")
             time.sleep(15 * 60)
         except Exception as e:
