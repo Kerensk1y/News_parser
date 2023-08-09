@@ -238,6 +238,20 @@ def faufcc():
         bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
 
 
+def gge():
+    path = "gge.txt"
+    dataset = file_set(path)
+    URL = "https://gge.ru/press-center/news/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    parsing = str(soup.find('a', class_="press-item-inline"))
+    link = URL + re.findall(r'href="/press-center/news/([^"]+)"', parsing)[0]
+    title = soup.find('div', class_="press-item-inline__title").text.strip()
+    if title not in dataset:
+        file_add(path, title)
+        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+
+
 def main_loop():
     while True:
         try:
