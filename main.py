@@ -1,10 +1,12 @@
 import requests
 import time
+import os
 from bs4 import BeautifulSoup
 import re
 import telebot
 import logging
-from t0ken import *
+
+# from t0ken import *
 
 is_sent = False
 
@@ -12,6 +14,8 @@ logging.basicConfig(filename='logger.log', level=logging.INFO,
                     format='%(levelname)s (%(asctime)s): %(message)s (Line: %(lineno)d) [%(filename)s]',
                     datefmt='%d/%m/%Y %H:%M:%S', encoding="utf-8", filemode="w")
 
+API_KEY = "6313360423:AAFnAi6FglZYbnU6hglG04PKLy7Ee9d-Lfw"
+channel_id = "@test_apvgk"
 bot = telebot.TeleBot(API_KEY)
 
 logging.info('Bot is running...')
@@ -19,15 +23,13 @@ logging.info('Bot is running...')
 
 # Функция забирает данные о последней выгруженной новости в переменную. Если данных нет создает пустой файл
 def file2set(file_path):
-    dataset = set()
-    try:
+    if os.path.exists(file_path):
         with open(file_path, 'r') as file:
-            for line in file:
-                dataset.add(line.strip())
-    except FileNotFoundError:
+            data = file.read()
+            return data
+    else:
         with open(file_path, 'w'):
-            pass  # TODO: change to path exists
-    return dataset
+            pass
 
 
 # Функция перезаписывает соответствующий файл, содержащий идентификатор последней отправленнй новости
@@ -41,7 +43,7 @@ def send_if_upd(path, title, link, id):
     try:
         global is_sent
         dataset = file2set(path)
-        if id not in dataset:
+        if id != dataset:
             add2file(path, id)
             bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
             is_sent = True
