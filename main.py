@@ -5,8 +5,7 @@ from bs4 import BeautifulSoup
 import re
 import telebot
 import logging
-
-# from t0ken import *
+from t0ken import *
 
 is_sent = False
 
@@ -14,8 +13,6 @@ logging.basicConfig(filename='logger.log', level=logging.INFO,
                     format='%(levelname)s (%(asctime)s): %(message)s (Line: %(lineno)d) [%(filename)s]',
                     datefmt='%d/%m/%Y %H:%M:%S', encoding="utf-8", filemode="w")
 
-API_KEY = "6313360423:AAFnAi6FglZYbnU6hglG04PKLy7Ee9d-Lfw"
-channel_id = "@test_apvgk"
 bot = telebot.TeleBot(API_KEY)
 
 logging.info('Bot is running...')
