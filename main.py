@@ -28,229 +28,262 @@ def file_add(file_path, data):
 
 
 def rosavtodor():
-    path = "rosavtodor.txt"
-    dataset = file_set(path)
-    URL = "https://rosavtodor.gov.ru"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsed = soup.find_all("div", class_='newsList')[0]
-    link = parsed.findAll(class_="boxLink")
-    link = URL + re.findall(r'href="(\/.*?)"', str(link))[0]
-    if link not in dataset:
-        dataset.add(link)
-        file_add(path, link)
-        title = parsed.find("p", class_="newsList__text").text.strip()
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "rosavtodor.txt"
+        dataset = file_set(path)
+        URL = "https://rosavtodor.gov.ru"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsed = soup.find_all("div", class_='newsList')[0]
+        link = parsed.findAll(class_="boxLink")
+        link = URL + re.findall(r'href="(\/.*?)"', str(link))[0]
+        if link not in dataset:
+            dataset.add(link)
+            file_add(path, link)
+            title = parsed.find("p", class_="newsList__text").text.strip()
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def rosdornii_events():
-    path = "rosdornii_events.txt"
-    dataset = file_set(path)
-    URL = "https://rosdornii.ru/press-center/event/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.findAll("h3",
-                           class_="t-1 my-2 t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition")[
-        0].find('a')
-    parsed = re.findall(r'href="\/press-center\/event\/(.*?\/.*)"', str(parsing))[0]
-    if parsed not in dataset:
-        dataset.add(parsed)
-        file_add(path, parsed)
-        link = URL + parsed
-        title = parsing.text.strip()
-        # достаю дату
-        date = soup.find_all("p", class_="t--1 c-text-secondary mb-2")[0].text.strip()
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "rosdornii_events.txt"
+        dataset = file_set(path)
+        URL = "https://rosdornii.ru/press-center/event/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.findAll("h3",
+                               class_="t-1 my-2 t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition")[
+            0].find('a')
+        parsed = re.findall(r'href="\/press-center\/event\/(.*?\/.*)"', str(parsing))[0]
+        if parsed not in dataset:
+            dataset.add(parsed)
+            file_add(path, parsed)
+            link = URL + parsed
+            title = parsing.text.strip()
+            # достаю дату
+            date = soup.find_all("p", class_="t--1 c-text-secondary mb-2")[0].text.strip()
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def rosdornii_news():
-    path = "rosdornii_news.txt"
-    dataset = file_set(path)
-    URL = "https://rosdornii.ru/press-center/news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.findAll("div", class_="iblock-list-item-text w-md-60 pl-md-4")[0]
-    parsed_link = re.findall(r'href="(\/.*?\/.*)"', str(parsing))[0]
-    if parsed_link not in dataset:
-        dataset.add(parsed_link)
-        file_add(path, parsed_link)
-        title = parsing.find('a', hidefocus="true")
-        if title:
-            title = title.get_text(strip=True)
-        link = "https://rosdornii.ru" + parsed_link
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "rosdornii_news.txt"
+        dataset = file_set(path)
+        URL = "https://rosdornii.ru/press-center/news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.findAll("div", class_="iblock-list-item-text w-md-60 pl-md-4")[0]
+        parsed_link = re.findall(r'href="(\/.*?\/.*)"', str(parsing))[0]
+        if parsed_link not in dataset:
+            dataset.add(parsed_link)
+            file_add(path, parsed_link)
+            title = parsing.find('a', hidefocus="true")
+            if title:
+                title = title.get_text(strip=True)
+            link = "https://rosdornii.ru" + parsed_link
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def rosdornii_digest():
-    path = "rosdornii_digest.txt"
-    dataset = file_set(path)
-    URL = "https://rosdornii.ru/press-center/digest/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.findAll("p",
-                           class_="left t-1 my-2 t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition")
-    parsed_link = re.findall(r'href="(\/.*?\/.*)">Дайджест новостей РФ \((\d\d\.\d\d\.\d\d\d\d)\).*', str(parsing))[0]
-    parsed_link = "https://rosdornii.ru" + parsed_link[0]
-    if parsed_link not in dataset:
-        file_add(path, parsed_link)
-        bot.send_message(channel_id, text=f"{parsed_link}")
-
+    try:
+        path = "rosdornii_digest.txt"
+        dataset = file_set(path)
+        URL = "https://rosdornii.ru/press-center/digest/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.findAll("p",
+                               class_="left t-1 my-2 t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition")
+        parsed_link = re.findall(r'href="(\/.*?\/.*)">Дайджест новостей РФ \((\d\d\.\d\d\.\d\d\d\d)\).*', str(parsing))[0]
+        parsed_link = "https://rosdornii.ru" + parsed_link[0]
+        if parsed_link not in dataset:
+            file_add(path, parsed_link)
+            bot.send_message(channel_id, text=f"{parsed_link}")
+    except:
+        pass
 
 def nopriz_news():
-    path = "nopriz_news.txt"
-    dataset = file_set(path)
-    URL = "https://www.nopriz.ru/news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('div', class_='title font_md').find('a')
-    title = parsing.text.strip()
-    link = URL + re.findall(r'href="\/news\/(.*)"', str(parsing))[0]
-    if link not in dataset:
-        file_add(path, link)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "nopriz_news.txt"
+        dataset = file_set(path)
+        URL = "https://www.nopriz.ru/news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('div', class_='title font_md').find('a')
+        title = parsing.text.strip()
+        link = URL + re.findall(r'href="\/news\/(.*)"', str(parsing))[0]
+        if link not in dataset:
+            file_add(path, link)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def nopriz_events():
-    path = "nopriz_events.txt"
-    dataset = file_set(path)
-    URL = "https://www.nopriz.ru/events/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.findAll('div', class_='title font_md')[-1]
-    title = parsing.text.strip()
-    link = URL + re.findall(r'href="\/events\/(.*)"', str(parsing))[0]
-    if link not in dataset:
-        file_add(path, link)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "nopriz_events.txt"
+        dataset = file_set(path)
+        URL = "https://www.nopriz.ru/events/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.findAll('div', class_='title font_md')[-1]
+        title = parsing.text.strip()
+        link = URL + re.findall(r'href="\/events\/(.*)"', str(parsing))[0]
+        if link not in dataset:
+            file_add(path, link)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def proekt_ros_news():
-    path = "proekt_ros_news.txt"
-    dataset = file_set(path)
-    URL = "https://bkdrf.ru/News/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('a', class_='nb_link')
-    title = parsing.text.strip()
-    link = URL + re.findall(r'href="/News/([^"]+)"', str(parsing))[0]
-    if link not in dataset:
-        file_add(path, link)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "proekt_ros_news.txt"
+        dataset = file_set(path)
+        URL = "https://bkdrf.ru/News/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('a', class_='nb_link')
+        title = parsing.text.strip()
+        link = URL + re.findall(r'href="/News/([^"]+)"', str(parsing))[0]
+        if link not in dataset:
+            file_add(path, link)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def nostroy_news():
-    path = "nostroy_news.txt"
-    dataset = file_set(path)
-    URL = "https://nostroy.ru/company/news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('div', class_="m-info-item__title title font_mlg")
-    title = parsing.text.strip()
-    link = URL + re.findall(r'href="/company/news/([^"]+)"', str(parsing))[0]
-    if link not in dataset:
-        file_add(path, link)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "nostroy_news.txt"
+        dataset = file_set(path)
+        URL = "https://nostroy.ru/company/news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('div', class_="m-info-item__title title font_mlg")
+        title = parsing.text.strip()
+        link = URL + re.findall(r'href="/company/news/([^"]+)"', str(parsing))[0]
+        if link not in dataset:
+            file_add(path, link)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def nostroy_events():
-    path = "nostroy_events.txt"
-    dataset = file_set(path)
-    URL = "https://nostroy.ru/company/anonsy-meropriyatiy/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('div', class_='preview-text')
-    title = parsing.text.strip()
-    link = URL + re.findall(r'href="/company/anonsy-meropriyatiy/([^"]+)"', str(parsing))[0]
-    if link not in dataset:
-        file_add(path, link)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    try:
+        path = "nostroy_events.txt"
+        dataset = file_set(path)
+        URL = "https://nostroy.ru/company/anonsy-meropriyatiy/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('div', class_='preview-text')
+        title = parsing.text.strip()
+        link = URL + re.findall(r'href="/company/anonsy-meropriyatiy/([^"]+)"', str(parsing))[0]
+        if link not in dataset:
+            file_add(path, link)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 
 def avtodor_news():
-    path = "avtodor_news.txt"
-    dataset = file_set(path)
-    URL = "https://russianhighways.ru/press/news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('a', class_="press-item-large")
-    id = re.findall(r'href="/press/news/([^"]+)"', str(parsing))[0]
-    if id not in dataset:
-        file_add(path, id)
-        link = URL + id
-        title = parsing.find('span', class_="press-item-large__h").text.strip()
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    try:
+        path = "avtodor_news.txt"
+        dataset = file_set(path)
+        URL = "https://russianhighways.ru/press/news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('a', class_="press-item-large")
+        id = re.findall(r'href="/press/news/([^"]+)"', str(parsing))[0]
+        if id not in dataset:
+            file_add(path, id)
+            link = URL + id
+            title = parsing.find('span', class_="press-item-large__h").text.strip()
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 
 def rosasfalt():
-    path = "rosasfalt.txt"
-    dataset = file_set(path)
-    URL = "https://rosasfalt.org/about/news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('p', class_="title")
-    title = parsing.text.strip()
-    id = re.findall(r'href="/about/news/([^"]+)"', str(parsing))[0]
-    if id not in dataset:
-        file_add(path, id)
-        link = URL + id
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "rosasfalt.txt"
+        dataset = file_set(path)
+        URL = "https://rosasfalt.org/about/news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('p', class_="title")
+        title = parsing.text.strip()
+        id = re.findall(r'href="/about/news/([^"]+)"', str(parsing))[0]
+        if id not in dataset:
+            file_add(path, id)
+            link = URL + id
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def minstroy():
-    path = "minstroy.txt"
-    dataset = file_set(path)
-    URL = "https://minstroyrf.gov.ru/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('div', class_="new-text")
-    title = parsing.text.strip()
-    id = re.findall(r'href="([^"]+)"', str(parsing))[0]
-    if id not in dataset:
-        file_add(path, id)
-        link = URL + id
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "minstroy.txt"
+        dataset = file_set(path)
+        URL = "https://minstroyrf.gov.ru/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('div', class_="new-text")
+        title = parsing.text.strip()
+        id = re.findall(r'href="([^"]+)"', str(parsing))[0]
+        if id not in dataset:
+            file_add(path, id)
+            link = URL + id
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def tk418():
-    path = "tk418.txt"
-    dataset = file_set(path)
-    URL = "https://tk418.ru/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = soup.find('p', class_="news-item")
-    title = parsing.text.strip()
-    if title not in dataset:
-        file_add(path, title)
-        bot.send_message(channel_id, text=f"{title}\n{URL}")
+    try:
+        path = "tk418.txt"
+        dataset = file_set(path)
+        URL = "https://tk418.ru/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = soup.find('p', class_="news-item")
+        title = parsing.text.strip()
+        if title not in dataset:
+            file_add(path, title)
+            bot.send_message(channel_id, text=f"{title}\n{URL}")
+    except:
+        pass
 
 
 def faufcc():
-    path = "faufcc.txt"
-    dataset = file_set(path)
-    URL = "https://www.faufcc.ru/archive/key-news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = str(soup.find('div', class_="news-item-content-wrapper"))
-    link = "https://www.faufcc.ru" + re.findall(r'href="([^"]+)"', parsing)[0]
-    title = re.findall(r'href="[^"]+">(.*)<\/a>', parsing)[0]
-    if title not in dataset:
-        file_add(path, title)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "faufcc.txt"
+        dataset = file_set(path)
+        URL = "https://www.faufcc.ru/archive/key-news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = str(soup.find('div', class_="news-item-content-wrapper"))
+        link = "https://www.faufcc.ru" + re.findall(r'href="([^"]+)"', parsing)[0]
+        title = re.findall(r'href="[^"]+">(.*)<\/a>', parsing)[0]
+        if title not in dataset:
+            file_add(path, title)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def gge():
-    path = "gge.txt"
-    dataset = file_set(path)
-    URL = "https://gge.ru/press-center/news/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    parsing = str(soup.find('a', class_="press-item-inline"))
-    link = URL + re.findall(r'href="/press-center/news/([^"]+)"', parsing)[0]
-    title = soup.find('div', class_="press-item-inline__title").text.strip()
-    if title not in dataset:
-        file_add(path, title)
-        bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
-
+    try:
+        path = "gge.txt"
+        dataset = file_set(path)
+        URL = "https://gge.ru/press-center/news/"
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+        parsing = str(soup.find('a', class_="press-item-inline"))
+        link = URL + re.findall(r'href="/press-center/news/([^"]+)"', parsing)[0]
+        title = soup.find('div', class_="press-item-inline__title").text.strip()
+        if title not in dataset:
+            file_add(path, title)
+            bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
+    except:
+        pass
 
 def main_loop():
     while True:
