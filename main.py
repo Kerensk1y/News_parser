@@ -40,7 +40,7 @@ def send_if_upd(path, title, link, id):
     try:
         global is_sent
         dataset = file2set(path)
-        if id != dataset:
+        if id not in dataset:
             add2file(path, id)
             bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
             is_sent = True
@@ -150,7 +150,7 @@ def rosdornii_digest(soup, url):
         0]
     parsed_link = "https://rosdornii.ru" + parsed_link[0]
 
-    return null, parsed_link, parsed_link
+    return "Дайджест новостей", parsed_link, parsed_link
 
 
 def rosasfalt(soup, url):
@@ -201,7 +201,7 @@ site_process = {
     'https://nostroy.ru/company/news/': (nostroy_news, 'nostroy_news.txt'),
     'https://nostroy.ru/company/anonsy-meropriyatiy/': (nostroy_events, 'nostroy_events.txt'),
     'https://russianhighways.ru/press/news/': (avtodor_news, 'avtodor_news.txt'),
-    # 'https://rosdornii.ru/press-center/digest/': (rosdornii_digest, 'rosdornii_digest.txt'),
+    'https://rosdornii.ru/press-center/digest/': (rosdornii_digest, 'rosdornii_digest.txt'),
     'https://rosasfalt.org/about/news/': (rosasfalt, 'rosasfalt.txt'),
     'https://minstroyrf.gov.ru/': (minstroy, 'minstroy.txt'),
     'https://tk418.ru/': (tk418, 'tk418.txt'),
