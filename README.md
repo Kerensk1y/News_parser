@@ -1,5 +1,7 @@
 # Parsing news websites
-&emsp;Sending updates is done in a pre-defined file in the Telegram channel called **'t0ken.py'**. It should contain two variables:
+&emsp;Sending updates is done in a pre-defined file in the Telegram channel called **'t0ken.py'** :incoming_envelope:
+
+It should contain two variables:
 _'channel_id'_ (the channel identifier, including '@') and _'API_KEY'_ (the key for interacting with the bot). The storage
 of the last sent news from each website is recorded in an automatically created corresponding **'.txt'** file as a basic database.
 
@@ -7,6 +9,8 @@ of the last sent news from each website is recorded in an automatically created 
 The **'web_pages.py'** file contains information about how parsing is done. In **'main.py'**, all the other algorithms
 necessary for the correct functioning are included.
 
-Used Python modules required for installation: _requests, bs4, pyTelegramBotAPI_
-Used Built-in Python modules: _time, os, logging_
-_the project is written in Python 3.10_
+:pushpin: Used Python modules required for installation: _requests, bs4, pyTelegramBotAPI_
+
+:pushpin: Used Built-in Python modules: _time, os, logging_
+
+:pushpin: _the project is written in Python 3.10_
