@@ -1,5 +1,5 @@
-# Parsing news websites
-&emsp;Sending updates is done in a pre-defined file in the Telegram channel called **'t0ken.py'** :incoming_envelope:
+# Parsing news websites :newspaper:
+Sending updates is done in a pre-defined file in the Telegram channel called **'t0ken.py'** :incoming_envelope:
 
 It should contain two variables:
 _'channel_id'_ (the channel identifier, including '@') and _'API_KEY'_ (the key for interacting with the bot). The storage
