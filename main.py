@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import telebot
 import logging
 from t0ken import *
-from web_pgs import *
+from web_pages import *
 
 is_sent = False
 
