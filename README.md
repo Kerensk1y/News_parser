@@ -3,9 +3,9 @@ Sending updates is done in a pre-defined file in the Telegram channel called **'
 
 This project enables you to send updates to a Telegram channel through a user-defined file called **'token.py'**. The **'token.py'** file should include two essential variables: _'channel_id'_ (the channel identifier, including '@') and _'API_KEY'_ (the key required for interacting with the Telegram bot). Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _'.txt'_ file.
 
-## Project Files
+## Project Files 📂
 
-This project consists of three main files, but the 't0ken.py' file mentioned earlier needs to be created manually. Here's a brief overview of the files:
+This project consists of three main files, but the 'token.py' file mentioned earlier needs to be created manually. Here's a brief overview of the files:
 
 1. **main.py**: In 'main.py', you will find all the algorithms necessary for the correct functioning of the project.
 
@@ -13,7 +13,7 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 
 3. **token.py**: You need to create this file manually with the required variables as described above.
 
-## Prerequisites
+## Prerequisites 📚
 
 :pushpin: Make sure you have the following Python modules installed to run this project:
 
@@ -27,6 +27,6 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 - os
 - logging
 
-## Python Version
+## Python Version 🐍
 
 This project is written in Python 3.10
