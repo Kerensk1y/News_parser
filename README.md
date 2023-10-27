@@ -7,7 +7,6 @@ of the last sent news from each website is recorded in an automatically created 
 The **'web_pages.py'** file contains information about how parsing is done. In **'main.py'**, all the other algorithms
 necessary for the correct functioning are included.
 
-&emsp;Used Python modules required for installation: _requests, bs4, pyTelegramBotAPI_
-&emsp;Used Built-in Python modules: _time, os, logging_
-
+Used Python modules required for installation: _requests, bs4, pyTelegramBotAPI_
+Used Built-in Python modules: _time, os, logging_
 _the project is written in Python 3.10_
