@@ -16,13 +16,17 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 
 ## Prerequisites
 
-Make sure you have the following Python modules installed to run this project:
+:pushpin: Make sure you have the following Python modules installed to run this project:
 
-:pushpin: Used Python modules required for installation: _requests, bs4, pyTelegramBotAPI_
+- pyTelegramBotAPI
+- bs4
+- requests
 
-In addition, the project utilizes built-in Python modules, including:
+:pushpin: In addition, the project utilizes built-in Python modules, including:
 
-:pushpin: Used Built-in Python modules: _time, os, logging_
+- time
+- os
+- logging
 
 ## Python Version
 
