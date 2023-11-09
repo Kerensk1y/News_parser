@@ -8,11 +8,11 @@ Copy the project:
 ```
 git clone https://github.com/Kerensk1y/News_parser.git
 ```
-Install 
+Install the requiered modules 
 ```
 pip3 install pyTelegramAPI beautifulsoup4 requests
 ```
-Create **'token.py'** file and insert the _'channel_id'_ and _'API_KEY'_ variables
+Create **token.py** file and insert the _'channel_id'_ and _'API_KEY'_ variables
 ```
 nano /News_parser/token.py
 ```
