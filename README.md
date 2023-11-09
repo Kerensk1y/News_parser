@@ -1,7 +1,12 @@
-# Parsing news from websites :newspaper:
+## Parsing news from websites :newspaper:
 Sending updates is done in a __user-defined__ file in the Telegram channel called **'token.py'**
 
 This project enables you to send updates to a Telegram channel through a user-defined file called **'token.py'**. The **'token.py'** file should include two essential variables: _'channel_id'_ (the channel identifier, including '@') and _'API_KEY'_ (the key required for interacting with the Telegram bot). Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _'.txt'_ file.
+
+## For fast deploy you can use
+git clone https://github.com/Kerensk1y/News_parser.git
+pip3 install pyTelegramAPI beautifulsoup4 requests
+nohup python3 -u News_parser/main.py &
 
 ## Project Files 📂
 
