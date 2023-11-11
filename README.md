@@ -35,7 +35,7 @@ This project consists of three main files, but the 'token.py' file mentioned ear
 :pushpin: Make sure you have the following Python modules installed to run this project:
 
 - pyTelegramBotAPI
-- bs4
+- BeautifulSoup4
 - requests
 
 :pushpin: In addition, the project utilizes built-in Python modules, including:
