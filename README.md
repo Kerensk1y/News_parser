@@ -3,20 +3,20 @@ Sending updates is done in a __user-defined__ file in the Telegram channel calle
 
 This project enables you to send updates to a Telegram channel through a user-defined file called **'token.py'**. The **'token.py'** file should include two essential variables: _'channel_id'_ (the channel identifier, including '@') and _'API_KEY'_ (the key required for interacting with the Telegram bot). Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _'.txt'_ file.
 
-## For fast deploy on Linux you can use this commands:
-Copy the project
+## For the fast deploy on Linux you can try the following steps:
+1. Clone the project
 ```
 git clone https://github.com/Kerensk1y/News_parser.git
 ```
-Install the requiered modules 
+2. Install the requiered modules
 ```
-pip3 install pyTelegramAPI beautifulsoup4 requests
+pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
-Create **token.py** file and insert the _'channel_id'_ and _'API_KEY'_ variables
+3. Create **token.py** file and insert the _"channel_id"_ and _"API_KEY"_ variables
 ```
 nano /News_parser/token.py
 ```
-Run the project in the background
+4. Run the **main.py** file in the background
 ```
 nohup python3 -u main.py &
 ```
