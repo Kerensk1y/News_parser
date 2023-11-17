@@ -38,7 +38,7 @@ nohup ./run_bot.sh &
 ```
 ## Project Files 📂
 
-This project consists of three main files, but the "t0ken.py" file mentioned earlier needs to be created manually. Here"s a brief overview of the files:
+Here"s a brief overview of the files:
 
 1. **main.py**: This file contains all the algorithms necessary for the correct functioning of the project.
 
