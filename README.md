@@ -20,7 +20,7 @@ echo -e "API_KEY="insert_your_API_key"\nchannel_id="insert_your_ch_id"" > News_p
 ```
 mkdir -p News_parser/db
 ```
-5. Run the **"main.py"** file in the background
+5. Run the **"main.py"** file in the background via **"run_bot.sh"**
 ```
 nohup ./run_bot.sh &
 ```
@@ -28,9 +28,13 @@ For stopping the process use
 ```
 kill -n 9 $(ps aux | grep run_bot | head -n 1 | tr -s ' ' | cut -d ' ' -f 2) | kill -n 9 $(ps aux | grep News_parser | head -n 1 | tr -s ' ' | cut -d ' ' -f 2)
 ```
-Alternative 5th step with restarting bot if crashed:
+Alternative 5th step with only starting the process
 ```
 nohup python3 -u main.py &
+```
+Then the stopping process is
+```
+kill -n 9 $(ps aux | grep News_parser | head -n 1 | tr -s ' ' | cut -d ' ' -f 2)
 ```
 ## Project Files 📂
 
