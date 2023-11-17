@@ -8,7 +8,7 @@ This project enables you to send updates to a Telegram channel through a user-de
 Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _".txt"_ file.
 
 ## For the fast deploy on Linux you can try the following steps 🐳
->!1. Clone the project:
+>! 1. Clone the project:
 ```
 git clone https://github.com/Kerensk1y/News_parser.git
 ```
