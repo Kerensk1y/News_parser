@@ -16,9 +16,21 @@ pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
 echo -e "API_KEY='insert_your_API_key'\nchannel_id='insert_your_ch_id'" | cat > News_parser/t0ken.py
 ```
-4. Run the **main.py** file in the background
+4. Create database directory 
+```
+cd News_paser|mkdir db
+```
+5. Run the **main.py** file in the background
 ```
 nohup python3 -u main.py &
+```
+For stopping the process use
+```
+kill pid <proc_id>
+```
+You can find the process id with
+```
+ps aux
 ```
 ## Project Files 📂
 
