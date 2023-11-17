@@ -70,3 +70,7 @@ Here is a brief overview of the files:
 ## Python Version 🐍
 
 This project is written in Python 3.10
+
+## License
+
+This project is licensed under the [GNU General Public License v2.0](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details.
