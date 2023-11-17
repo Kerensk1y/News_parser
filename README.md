@@ -50,7 +50,7 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 
 5. **logger.log**: logs from telegram bot (updates, errors)
 
-6. **bot_log.txt**: file created via ***bot_run.sh** it contains starting and restarting logs
+6. **bot_log.txt**: file created via **bot_run.sh** it contains starting and restarting logs
 
 7. **db**: directory used for the database storage
 ## Prerequisites 📚
