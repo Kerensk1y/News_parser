@@ -44,13 +44,13 @@ kill -n 9 $(ps aux | grep News_parser/main.py | head -n 1 | tr -s ' ' | cut -d '
 
 Here is a brief overview of the files:
 
-1. **main.py**: This file contains all the algorithms necessary for the correct functioning of the project.
+1. **main.py**: This file contains all the algorithms necessary for the correct functioning of the project (contained in the project)
 
-2. **web_pages.py**: This file contains the information on how web page parsing is accomplished.
+2. **web_pages.py**: This file contains the information on how web page parsing is accomplished (contained in the project)
 
 3. **t0ken.py**: Variables for the interaction with your bot via API. As described above this file contains your own __API key__ and id of your channel (created by user)
 
-4. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it
+4. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it (contained in the project)
 
 5. **bot_log.txt**: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
 
