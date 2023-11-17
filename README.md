@@ -46,6 +46,13 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 
 3. **t0ken.py**: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel 
 
+4. **bot_run.sh**: sh script for restarting main.py if it crashed and log it
+
+5. **logger.log**: logs from telegram bot (updates, errors)
+
+6. **bot_log.txt**: file created via ***bot_run.sh** it contains starting and restarting logs
+
+7. **db**: directory used for the database storage
 ## Prerequisites 📚
 
 :pushpin: Make sure you have the following Python modules installed to run this project:
