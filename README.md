@@ -20,7 +20,7 @@ echo -e "API_KEY='insert_your_API_key'\nchannel_id='insert_your_ch_id'" > News_p
 ```
 mkdir -p News_parser/db
 ```
-5. Run the **main.py** file in the background
+5. Run the **"main.py"** file in the background
 ```
 nohup python3 -u main.py &
 ```
@@ -44,15 +44,15 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 
 2. **web_pages.py**: This file contains the information on how web page parsing is accomplished.
 
-3. **t0ken.py**: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel 
+3. **t0ken.py**: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel (created by user)
 
 4. **bot_run.sh**: sh script for restarting main.py if it crashed and log it
 
-5. **logger.log**: logs from telegram bot (updates, errors)
+5. **bot_log.txt**: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
 
-6. **bot_log.txt**: file created via **bot_run.sh** it contains starting and restarting logs
+6. **logger.log**: logs from telegram bot (updates, errors) (created automatically)
 
-7. **db**: directory used for the database storage
+7. **db**: directory used for the database storage (created by user)
 ## Prerequisites 📚
 
 :pushpin: Make sure you have the following Python modules installed to run this project:
