@@ -46,7 +46,7 @@ This project consists of three main files, but the 't0ken.py' file mentioned ear
 
 3. **t0ken.py**: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel (created by user)
 
-4. **bot_run.sh**: sh script for restarting main.py if it crashed and log it
+4. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it
 
 5. **bot_log.txt**: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
 
