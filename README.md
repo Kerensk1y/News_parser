@@ -14,7 +14,7 @@ pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
 3. Create **token.py** file and insert the _"channel_id"_ and _"API_KEY"_ variables
 ```
-echo "API_KEY='insert_your_API_key' channel_id='insert_your_ch_id'" | cat > token.py
+echo "API_KEY='insert_your_API_key' channel_id='insert_your_ch_id'" | cat > News_parser/token.py
 ```
 4. Run the **main.py** file in the background
 ```
