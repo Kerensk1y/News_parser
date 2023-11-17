@@ -14,7 +14,7 @@ pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
 3. Create **t0ken.py** file and insert the _"channel_id"_ and _"API_KEY"_ variables
 ```
-echo -e "API_KEY='insert_your_API_key'\nchannel_id='insert_your_ch_id'" | cat > News_parser/t0ken.py
+echo -e "API_KEY='insert_your_API_key'\nchannel_id='insert_your_ch_id'" > News_parser/t0ken.py
 ```
 4. Create database directory 
 ```
@@ -31,6 +31,10 @@ kill pid <proc_id>
 You can find the process id with
 ```
 ps aux
+```
+Alternative 5th step with restarting bot if crashed:
+```
+nohup ./run_bot.sh &
 ```
 ## Project Files 📂
 
