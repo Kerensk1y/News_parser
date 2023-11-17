@@ -3,7 +3,7 @@ Sending updates is done in a __user-defined__ file in the Telegram channel calle
 
 This project enables you to send updates to a Telegram channel through a user-defined file called `t0ken.py`. This file should include two essential variables: _"channel_id"_ (the channel identifier, including "@") and _"API_KEY"_ (the key required for interacting with the Telegram bot). 
 
-> ⚠️ Bot whose API key you use in this project must be adminstrator of the channel which id you use. 
+> ⚠️ Bot which API key you use in this project must be adminstrator of the channel which id you use. 
 
 Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _".txt"_ file.
 
