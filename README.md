@@ -1,7 +1,7 @@
 ## Parsing news from websites :newspaper:
-Sending updates is done in a __user-defined__ file in the Telegram channel called **'t0ken.py'**
+Sending updates is done in a __user-defined__ file in the Telegram channel called **"t0ken.py"**
 
-This project enables you to send updates to a Telegram channel through a user-defined file called **'t0ken.py'**. The **'t0ken.py'** file should include two essential variables: _'channel_id'_ (the channel identifier, including '@') and _'API_KEY'_ (the key required for interacting with the Telegram bot). Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _'.txt'_ file.
+This project enables you to send updates to a Telegram channel through a user-defined file called **"t0ken.py"**. The **"t0ken.py"** file should include two essential variables: _"channel_id"_ (the channel identifier, including "@") and _"API_KEY"_ (the key required for interacting with the Telegram bot). Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _".txt"_ file.
 
 ## For the fast deploy on Linux you can try the following steps 🐳
 1. Clone the project
@@ -14,7 +14,7 @@ pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
 3. Create **t0ken.py** file and insert the _"channel_id"_ and _"API_KEY"_ variables
 ```
-echo -e "API_KEY='insert_your_API_key'\nchannel_id='insert_your_ch_id'" > News_parser/t0ken.py
+echo -e "API_KEY="insert_your_API_key"\nchannel_id="insert_your_ch_id"" > News_parser/t0ken.py
 ```
 4. Create database directory 
 ```
@@ -38,7 +38,7 @@ nohup ./run_bot.sh &
 ```
 ## Project Files 📂
 
-This project consists of three main files, but the 't0ken.py' file mentioned earlier needs to be created manually. Here's a brief overview of the files:
+This project consists of three main files, but the "t0ken.py" file mentioned earlier needs to be created manually. Here"s a brief overview of the files:
 
 1. **main.py**: This file contains all the algorithms necessary for the correct functioning of the project.
 
