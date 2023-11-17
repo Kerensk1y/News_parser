@@ -18,7 +18,7 @@ echo -e "API_KEY='insert_your_API_key'\nchannel_id='insert_your_ch_id'" | cat > 
 ```
 4. Create database directory 
 ```
-cd News_paser|mkdir db
+mkdir -p News_parser/db
 ```
 5. Run the **main.py** file in the background
 ```
