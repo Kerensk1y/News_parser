@@ -45,7 +45,8 @@ def send_if_upd(path, title, link, id):
             write_to_file(path, id)
             bot.send_message(channel_id, text=f'<a href="{link}">{title}</a>', parse_mode='html')
             is_sent = True
-            logging.info(f'New message on {path}')
+            www = re.findall(r'\/(.*)\.',path)[0]
+            logging.info(f'New message from {www}')
     except Exception as e:
         logging.error(f"Произошла ошибка: {str(e)}")
 
