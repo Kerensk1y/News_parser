@@ -40,19 +40,19 @@ kill -n 9 $(ps aux | grep News_parser/main.py | head -n 1 | tr -s ' ' | cut -d '
 
 Here is a brief overview of the files:
 
-1. `main.py`: This file contains all the algorithms necessary for the correct functioning of the project.
+1. **main.py**: This file contains all the algorithms necessary for the correct functioning of the project.
 
-2. `web_pages.py`: This file contains the information on how web page parsing is accomplished.
+2. **web_pages.py**: This file contains the information on how web page parsing is accomplished.
 
-3. `t0ken.py`: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel (created by user)
+3. **t0ken.py**: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel (created by user)
 
-4. `bot_run.sh`: sh script for restarting **"main.py"** if it crashed and log it
+4. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it
 
-5. `bot_log.txt`: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
+5. **bot_log.txt**: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
 
-6. `logger.log`: logs from telegram bot (updates, errors) (created automatically)
+6. **logger.log**: logs from telegram bot (updates, errors) (created automatically)
 
-7. `db`: directory used for the database storage (created by user)
+7. **db**: directory used for the database storage (created by user)
 ## Prerequisites 📚
 
 :pushpin: Make sure you have the following Python modules installed to run this project:
