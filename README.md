@@ -6,19 +6,19 @@ This project enables you to send updates to a Telegram channel through a user-de
 ## For the fast deploy on Linux you can try the following steps 🐳
 1. Clone the project
 ```
-$ git clone https://github.com/Kerensk1y/News_parser.git
+git clone https://github.com/Kerensk1y/News_parser.git
 ```
 2. Install the requiered modules
 ```
-$ pip3 install pyTelegramBotAPI BeautifulSoup4 requests
+pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
 3. Create **token.py** file and insert the _"channel_id"_ and _"API_KEY"_ variables
 ```
-$ echo "API_KEY='insert_your_API_key' channel_id='insert_your_ch_id'" | cat > token.py
+echo "API_KEY='insert_your_API_key' channel_id='insert_your_ch_id'" | cat > token.py
 ```
 4. Run the **main.py** file in the background
 ```
-$ nohup python3 -u main.py &
+nohup python3 -u main.py &
 ```
 ## Project Files 📂
 
