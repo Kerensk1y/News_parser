@@ -22,19 +22,15 @@ mkdir -p News_parser/db
 ```
 5. Run the **"main.py"** file in the background
 ```
-nohup python3 -u main.py &
+nohup ./run_bot.sh &
 ```
 For stopping the process use
 ```
-kill pid <proc_id>
-```
-You can find the process id with
-```
-ps aux
+kill -n 9 $(ps aux | grep run_bot | head -n 1 | tr -s ' ' | cut -d ' ' -f 2) | kill -n 9 $(ps aux | grep News_parser | head -n 1 | tr -s ' ' | cut -d ' ' -f 2)
 ```
 Alternative 5th step with restarting bot if crashed:
 ```
-nohup ./run_bot.sh &
+nohup python3 -u main.py &
 ```
 ## Project Files 📂
 
