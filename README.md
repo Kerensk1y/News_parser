@@ -1,7 +1,7 @@
 ## Parsing news from websites :newspaper:
 Sending updates is done in a __user-defined__ file in the Telegram channel called `t0ken.py`
 
-This project enables you to send updates to a Telegram channel through a user-defined file called `t0ken.py`. This file should include two essential variables: _"channel_id"_ (the channel identifier, including "@") and _"API_KEY"_ (the key required for interacting with the Telegram bot). Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _".txt"_ file.
+This project enables you to send updates to a Telegram channel through a user-defined file called `t0ken.py`. This file should include two essential variables: _"channel_id"_ (the channel identifier, including "@") and _"API_KEY"_ (the key required for interacting with the Telegram bot). [Bot whose API key you use in this project must be adminstrator of the channel which id you use]. Furthermore, the project maintains a basic database by storing the last sent news from each website in an automatically generated corresponding _".txt"_ file.
 
 ## For the fast deploy on Linux you can try the following steps 🐳
 1. Clone the project:
@@ -44,7 +44,7 @@ Here is a brief overview of the files:
 
 2. **web_pages.py**: This file contains the information on how web page parsing is accomplished.
 
-3. **t0ken.py**: You need to create this file manually with the required variables as described above. This file contains data of your TGBot and channel (created by user)
+3. **t0ken.py**: Variables for the interaction with your bot via API. As described above this file contains your own __API key__ and id of your channel (created by user)
 
 4. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it
 
