@@ -61,9 +61,9 @@ Here is a brief overview of the files:
 
 :pushpin: Make sure you have the following Python modules installed to run this project:
 
-- pyTelegramBotAPI
-- BeautifulSoup4
-- requests
+- pyTelegramBotAPI (used v.4.14.0)
+- BeautifulSoup4 (used v.4.12.2)
+- requests (used v.2.31.0)
 
 :pushpin: In addition, the project utilizes built-in Python modules, including:
 
