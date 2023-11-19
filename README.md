@@ -1,7 +1,7 @@
 ## Parsing news from websites :newspaper:
 Sending updates is done in a __user-defined__ file in the Telegram channel called `t0ken.py`
 
-This project enables you to send updates to a Telegram channel through a user-defined file called `t0ken.py`. This file should include two essential variables: _"channel_id"_ (the channel identifier, including "@") and _"API_KEY"_ (the key required for interacting with the Telegram bot). 
+This project enables you to send updates to a Telegram channel. 
 
 > ⚠️ Bot which API key you use in this project must be adminstrator of the channel which id you use. 
 
@@ -16,15 +16,11 @@ git clone https://github.com/Kerensk1y/News_parser.git
 ```
 pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
-3. Create `t0ken.py` file and insert the _"channel_id"_ and _"API_KEY"_ variables:
+3. Run setup.sh and insert the _"channel_id"_ and _"API_KEY"_ variables:
 ```
-echo -e "API_KEY="insert_your_API_key"\nchannel_id="insert_your_ch_id"" > News_parser/t0ken.py
+./setup.sh
 ```
-4. Create database directory:
-```
-mkdir -p News_parser/db
-```
-5. Run the `main.py` file in the background via `run_bot.sh`:
+4. Run the `main.py` file in the background via `run_bot.sh`:
 ```
 nohup ./run_bot.sh &
 ```
@@ -32,7 +28,7 @@ For stopping the process use:
 ```
 kill -n 9 $(ps aux | grep run_bot.sh | head -n 1 | tr -s ' ' | cut -d ' ' -f 2) | kill -n 9 $(ps aux | grep News_parser/main.py | head -n 1 | tr -s ' ' | cut -d ' ' -f 2)
 ```
-Alternative 5th step with only starting the process:
+Alternative 4th step with only starting the process:
 ```
 nohup python3 -u main.py &
 ```
@@ -48,15 +44,17 @@ Here is a brief overview of the files:
 
 2. **web_pages.py**: This file contains the information on how web page parsing is accomplished (contained in the project)
 
-3. **t0ken.py**: Variables for the interaction with your bot via API. As described above this file contains your own __API key__ and id of your channel (created by user)
+3. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it (contained in the project)
 
-4. **bot_run.sh**: sh script for restarting **"main.py"** if it crashed and log it (contained in the project)
+4. **bot_log.txt**: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
 
-5. **bot_log.txt**: file created via **"bot_run.sh"** it contains starting and restarting logs (created automatically)
+5. **logger.log**: logs from telegram bot (updates, errors) (created automatically)
 
-6. **logger.log**: logs from telegram bot (updates, errors) (created automatically)
+6. **setup.sh**: needed comands to start - insertion api key, channel id and create `db` directory (contained in the project)
 
-7. **db**: directory used for the database storage (created by user)
+7. **t0ken.py**: Variables for the interaction with your bot via API. As described above this file contains your own __API key__ and id of your channel (created automatically, filled by user)
+
+8. **db**: directory used for the database storage (created automatically)
 ## Prerequisites 📚
 
 :pushpin: Make sure you have the following Python modules installed to run this project:
