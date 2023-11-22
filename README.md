@@ -1,7 +1,7 @@
 ## Parsing news from websites :newspaper:
-Sending updates is done in a __user-defined__ file in the Telegram channel called `t0ken.py`
+Sending updates is done via Telegram API
 
-This project enables you to send updates to a Telegram channel. 
+This project enables you to send updates to a Telegram channel with bot. 
 
 > ⚠️ Bot which API key you use in this project must be adminstrator of the channel which id you use. 
 
