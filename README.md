@@ -26,7 +26,7 @@ nohup ./run_bot.sh &
 ```
 For stopping the process use:
 ```
-kill -n 9 $(ps aux | grep run_bot.sh | head -n 1 | tr -s ' ' | cut -d ' ' -f 2) | kill -n 9 $(ps aux | grep News_parser/main.py | head -n 1 | tr -s ' ' | cut -d ' ' -f 2)
+./bot_stop.sh
 ```
 Alternative 4th step with only starting the process:
 ```
