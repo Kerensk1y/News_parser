@@ -6,7 +6,7 @@ echo "Bot started at: $(date)" >> "$LOG_FILE"
 
 while true; do
     {
-        python3 ~/News_parser/main.py
+        python3 ~/news_parser/main.py
         echo "---------------------------"
         echo "Bot crashed at: $(date)"
         echo "Restarting in 10 seconds..."
