@@ -16,11 +16,16 @@ git clone https://github.com/Kerensk1y/News_parser.git
 ```
 pip3 install pyTelegramBotAPI BeautifulSoup4 requests
 ```
-3. Run setup.sh and insert the _"channel_id"_ and _"API_KEY"_ variables:
+3. Allow execution for `setup.sh`:
+```
+cd news_parser
+chmod +x setup.sh
+```
+4. Run setup.sh and insert the _"channel_id"_ and _"API_KEY"_ variables:
 ```
 ./setup.sh
 ```
-4. Run the `main.py` file in the background via `run_bot.sh`:
+5. Run the `main.py` file in the background via `run_bot.sh`:
 ```
 nohup ./run_bot.sh &
 ```
@@ -28,7 +33,7 @@ For stopping the process use:
 ```
 ./bot_stop.sh
 ```
-Alternative 4th step with only starting the process:
+Alternative 5th step with only starting the process:
 ```
 nohup python3 -u main.py &
 ```
