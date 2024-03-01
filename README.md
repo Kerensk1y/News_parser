@@ -25,9 +25,9 @@ chmod +x setup.sh
 ```
 ./setup.sh
 ```
-5. Run the `main.py` file in the background via `run_bot.sh`:
+5. Run the `main.py` file in the background via `bot_run.sh`:
 ```
-nohup ./run_bot.sh &
+nohup ./bot_run.sh &
 ```
 For stopping the process use:
 ```
