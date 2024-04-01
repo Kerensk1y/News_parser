@@ -1,0 +1,8 @@
+**/__pycache__/
+bot_log.txt
+db/
+logger.log
+nohup.out
+t0ken.py
+**/venv/
+
