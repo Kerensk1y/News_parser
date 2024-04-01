@@ -14,12 +14,16 @@ git clone https://github.com/Kerensk1y/News_parser.git
 ```
 2. Install the requiered modules:
 ```
-pip3 install pyTelegramBotAPI BeautifulSoup4 requests
+pip3 install -r requierments.txt
 ```
 3. Allow execution for `setup.sh`:
 ```
 cd news_parser
+```
+```
 chmod +x setup.sh
+chmod +x bot_run.sh
+chmod +x bot_stop.sh
 ```
 4. Run setup.sh and insert the _"channel_id"_ and _"API_KEY"_ variables:
 ```
