@@ -22,8 +22,6 @@ cd news_parser
 ```
 ```
 chmod +x setup.sh
-chmod +x bot_run.sh
-chmod +x bot_stop.sh
 ```
 4. Run setup.sh and insert the _"channel_id"_ and _"API_KEY"_ variables:
 ```
@@ -36,14 +34,6 @@ nohup ./bot_run.sh &
 For stopping the process use:
 ```
 ./bot_stop.sh
-```
-Alternative 5th step with only starting the process:
-```
-nohup python3 -u main.py &
-```
-Then the stopping process is:
-```
-kill -n 9 $(ps aux | grep News_parser/main.py | head -n 1 | tr -s ' ' | cut -d ' ' -f 2)
 ```
 ## Project Files 📂
 
