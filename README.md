@@ -32,10 +32,11 @@ For stopping the process use:
 ```
 ./bot_stop.sh
 ```
-Optionally you can create virtual environment
+Optionally you can create virtual environment for the first step
 ```
 python3 -m venv venv
 ```
+To activate venv use
 ```
 source venv/bin/activate
 ```
