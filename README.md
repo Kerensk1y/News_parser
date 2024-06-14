@@ -32,6 +32,17 @@ For stopping the process use:
 ```
 ./bot_stop.sh
 ```
+Optionally you can create virtual environment
+```
+python3 -m venv venv
+```
+```
+source venv/bin/activate
+```
+Use the following command to deactivate venv
+```
+deactivate
+```
 ## Project Files 📂
 
 Here is a brief overview of the files:
