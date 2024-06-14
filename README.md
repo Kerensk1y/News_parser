@@ -20,9 +20,6 @@ pip3 install -r requierments.txt
 ```
 cd news_parser
 ```
-```
-chmod +x setup.sh
-```
 4. Run setup.sh and insert the _"channel_id"_ and _"API_KEY"_ variables:
 ```
 ./setup.sh
@@ -71,6 +68,10 @@ Here is a brief overview of the files:
 ## Python Version 🐍
 
 This project is written in Python 3.10
+
+## OS Version :eight_pointed_black_star:
+
+Ubuntu 22.04 :octopus:
 
 ## License 📄
 
