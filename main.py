@@ -68,12 +68,14 @@ site_process = {
     'https://minstroyrf.gov.ru/': (minstroy, 'db/minstroy.txt'),
     'https://tk418.ru/': (tk418, 'db/tk418.txt'),
     'https://gge.ru/press-center/news/': (gge, 'db/gge.txt'),
+    'https://mintrans.gov.ru/press-center/previews': (minstrans_preview, 'db/minstrans_preview.txt')
 }
 
 
 def parse_site(url):
     try:
-        page = requests.get(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        page = requests.get(url, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
 
         process_func, path = site_process[url]

@@ -1,5 +1,7 @@
 import re
 import logging
+from bs4 import BeautifulSoup
+import requests
 
 def rosavtodor(soup, url):
     parsed = soup.find_all("div", class_='newsList')[0]
@@ -139,3 +141,10 @@ def gge(soup, url):
     title = soup.find('div', class_="press-item-inline__title").text.strip()
 
     return title, link, title
+
+def minstrans_preview(soup, url):
+    parsing = soup.find('a', class_ = "news-text fc-blue")
+    title = parsing.text.strip()
+    link = url + re.findall(r'(/\d+)$', re.findall(r'href="([^"]*)"', str(parsing))[0])[0]
+    id = re.findall(r'/(\d+)$', re.findall(r'href="([^"]*)"', str(parsing))[0])[0]
+    return title, link, id
